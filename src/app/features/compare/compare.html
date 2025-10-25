@@ -31,6 +31,8 @@
   </mat-error>
 </mat-card>
 
+<app-summary-card *ngIf="results?.length" [results]="results"></app-summary-card>
+
 <!-- Results section -->
 <div class="results" *ngIf="results?.length">
   <app-model-card

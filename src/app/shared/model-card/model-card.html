@@ -1,32 +1,50 @@
-<mat-card class="model-card">
+<mat-card class="model-card" [ngClass]="providerClass(result.metadata.provider)">
   <mat-card-header>
     <mat-card-title>{{ result.metadata.name }}</mat-card-title>
     <mat-card-subtitle>{{ result.metadata.provider }}</mat-card-subtitle>
   </mat-card-header>
 
   <mat-card-content>
-    <p class="model-text">{{ result.text }}</p>
+    <p class="response-text">{{ result.text }}</p>
 
-    <mat-progress-bar
-      mode="determinate"
-      [value]="result.latency | latencyScore"
-      color="accent"
-      matTooltip="Latency: {{ result.latency }} ms"
-    ></mat-progress-bar>
-
-    <div class="insight-grid">
-      <div><strong>Latency:</strong> {{ result.latency }} ms</div>
-      <div><strong>Tokens:</strong> {{ tokenCount }}</div>
-      <div><strong>Words:</strong> {{ wordCount }}</div>
-      <div><strong>Cost:</strong> {{ formattedCost }}</div>
-      <div>
-        <strong>Readability:</strong> {{ readabilityLevel }}
-        ({{ result.insights?.readability | number : '1.0-0' }})
+    <div class="metrics">
+      <div class="metric-row">
+        <span>⚡ {{ result.latency }} ms</span>
+        <span>💬 {{ result.tokens }} tokens</span>
+        <span>
+          💰
+          {{
+            result.insights?.estimatedCostUSD
+              ? (result.insights?.estimatedCostUSD | currency : 'USD' : 'symbol' : '1.4-4')
+              : 'N/A'
+          }}
+        </span>
       </div>
-      <div><strong>Tone:</strong> {{ result.insights?.tone || 'N/A' }}</div>
-      <div>
-        <strong>Coherence:</strong> {{ coherenceLevel }}
-        ({{ (result.insights?.coherence || 0) | percent : '1.0-0' }})
+
+      <div class="metric-row">
+        <span>
+          🧠 Readability:
+          <span
+            [class.good]="(result.insights?.readability ?? 0) > 60"
+            [class.medium]="
+              (result.insights?.readability ?? 0) > 30 &&
+              (result.insights?.readability ?? 0) <= 60
+            "
+            [class.bad]="(result.insights?.readability ?? 0) <= 30"
+          >
+            {{ result.insights?.readability ?? 'N/A' }}
+          </span>
+        </span>
+        <span>🎭 Tone: {{ result.insights?.tone ?? 'N/A' }}</span>
+      </div>
+
+      <div class="metric-row">
+        <span>🔗 Coherence:</span>
+        <mat-progress-bar
+          mode="determinate"
+          [value]="(result.insights?.coherence ?? 0) * 100"
+          color="accent"
+        ></mat-progress-bar>
       </div>
     </div>
   </mat-card-content>

@@ -10,6 +10,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { ModelCard } from '../../shared/model-card/model-card';
+import { SummaryCard } from '../../shared/summary-card/summary-card';
 
 
 @Component({
@@ -26,7 +27,8 @@ import { ModelCard } from '../../shared/model-card/model-card';
     MatButtonModule,
     MatProgressSpinnerModule,
     MatIconModule,
-    ModelCard
+    ModelCard,
+    SummaryCard
   ]
 })
 export class Compare {

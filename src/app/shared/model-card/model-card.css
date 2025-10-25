@@ -1,15 +1,69 @@
-.insight-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 0.5rem 1rem;
+.model-card {
+  width: 340px;
+  padding: 8px 12px 12px 12px;
+}
+
+.response-text {
   font-size: 0.9rem;
-}
-
-.insight-grid div strong {
+  line-height: 1.4;
   color: #333;
+  margin-bottom: 12px;
+  max-height: 300px;
+  overflow-y: auto;
 }
 
-.insight-grid div:nth-child(4) {
-  color: #2e7d32; /* green for cost */
+.metrics {
+  font-size: 0.85rem;
+  color: #555;
+}
+
+.metric-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 4px 0;
+  gap: 6px;
+}
+
+.good {
+  color: #43a047;
   font-weight: 600;
+}
+
+.medium {
+  color: #f9a825;
+  font-weight: 600;
+}
+
+.bad {
+  color: #e53935;
+  font-weight: 600;
+}
+
+/* provider accent borders */
+.openai {
+  border-left: 4px solid #10a37f;
+}
+.anthropic {
+  border-left: 4px solid #c92d2d;
+}
+.google {
+  border-left: 4px solid #4285f4;
+}
+
+.response-text {
+  max-height: 220px;
+  overflow-y: auto;
+  line-height: 1.5;
+  white-space: pre-wrap;
+  padding-right: 4px;
+}
+
+/* Optional: nicer scrollbar */
+.response-text::-webkit-scrollbar {
+  width: 6px;
+}
+.response-text::-webkit-scrollbar-thumb {
+  background: #bbb;
+  border-radius: 3px;
 }

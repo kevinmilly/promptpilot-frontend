@@ -1,0 +1,28 @@
+.summary-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  background: #fafcff;
+  border-left: 4px solid #2196f3;
+  border-radius: 8px;
+  padding: 0.8rem 1.2rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.06);
+}
+
+.summary-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.95rem;
+}
+
+@media (max-width: 600px) {
+  .summary-row {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .summary-row strong {
+    margin-bottom: 0.2rem;
+  }
+}
