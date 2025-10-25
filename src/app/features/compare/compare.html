@@ -1,0 +1,46 @@
+<mat-card class="input-card">
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>Enter your prompt</mat-label>
+    <textarea
+      matInput
+      [(ngModel)]="prompt"
+      rows="3"
+      placeholder="Ask something like 'Explain quantum computing simply'"
+    ></textarea>
+  </mat-form-field>
+
+  <button
+    mat-raised-button
+    color="primary"
+    class="compare-button"
+    (click)="onCompare()"
+    [disabled]="loading || !prompt.trim()"
+  >
+    <mat-icon *ngIf="!loading">bolt</mat-icon>
+    <mat-progress-spinner
+      *ngIf="loading"
+      mode="indeterminate"
+      diameter="20"
+      color="accent"
+    ></mat-progress-spinner>
+    <span *ngIf="!loading">Compare</span>
+  </button>
+
+  <mat-error *ngIf="error" class="error-message">
+    {{ error }}
+  </mat-error>
+</mat-card>
+
+<!-- Results section -->
+<div class="results" *ngIf="results?.length">
+  <app-model-card
+    *ngFor="let result of results"
+    [result]="result"
+    class="result-card"
+  ></app-model-card>
+</div>
+
+<!-- Empty state -->
+<div class="empty-state" *ngIf="!loading && !results?.length && !error">
+  <p>🧠 Enter a prompt and click Compare to see how models respond.</p>
+</div>

@@ -1,0 +1,15 @@
+.insight-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem 1rem;
+  font-size: 0.9rem;
+}
+
+.insight-grid div strong {
+  color: #333;
+}
+
+.insight-grid div:nth-child(4) {
+  color: #2e7d32; /* green for cost */
+  font-weight: 600;
+}

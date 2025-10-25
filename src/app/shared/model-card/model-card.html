@@ -1,0 +1,33 @@
+<mat-card class="model-card">
+  <mat-card-header>
+    <mat-card-title>{{ result.metadata.name }}</mat-card-title>
+    <mat-card-subtitle>{{ result.metadata.provider }}</mat-card-subtitle>
+  </mat-card-header>
+
+  <mat-card-content>
+    <p class="model-text">{{ result.text }}</p>
+
+    <mat-progress-bar
+      mode="determinate"
+      [value]="result.latency | latencyScore"
+      color="accent"
+      matTooltip="Latency: {{ result.latency }} ms"
+    ></mat-progress-bar>
+
+    <div class="insight-grid">
+      <div><strong>Latency:</strong> {{ result.latency }} ms</div>
+      <div><strong>Tokens:</strong> {{ tokenCount }}</div>
+      <div><strong>Words:</strong> {{ wordCount }}</div>
+      <div><strong>Cost:</strong> {{ formattedCost }}</div>
+      <div>
+        <strong>Readability:</strong> {{ readabilityLevel }}
+        ({{ result.insights?.readability | number : '1.0-0' }})
+      </div>
+      <div><strong>Tone:</strong> {{ result.insights?.tone || 'N/A' }}</div>
+      <div>
+        <strong>Coherence:</strong> {{ coherenceLevel }}
+        ({{ (result.insights?.coherence || 0) | percent : '1.0-0' }})
+      </div>
+    </div>
+  </mat-card-content>
+</mat-card>

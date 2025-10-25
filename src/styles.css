@@ -1,0 +1,101 @@
+/* 🌈 Clean gradient background and typography */
+html, body {
+  margin: 0;
+  height: 100%;
+  font-family: 'Inter', 'Roboto', sans-serif;
+  background: linear-gradient(135deg, #fafafa 0%, #f0f4f8 100%);
+  color: #1f1f1f;
+}
+
+/* Center the main content */
+main {
+  max-width: 1000px;
+  margin: 3rem auto;
+  padding: 1rem;
+}
+
+/* Header styling */
+.header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.header h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #222;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.header span {
+  font-size: 0.95rem;
+  color: #6b7280;
+}
+
+/* Footer */
+.footer {
+  text-align: center;
+  font-size: 0.85rem;
+  margin-top: 3rem;
+  color: #777;
+}
+
+/* Responsive grid for cards */
+.results-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+/* Card layout */
+.result-card {
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  background: #fff;
+  overflow-y: auto;
+  max-height: 380px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.result-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Scroll styling for long responses */
+.result-card::-webkit-scrollbar {
+  width: 6px;
+}
+.result-card::-webkit-scrollbar-thumb {
+  background: #ddd;
+  border-radius: 10px;
+}
+
+/* Prompt box */
+.input-card {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  padding: 1.5rem;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.spinner {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+.error {
+  color: #c62828;
+  text-align: center;
+  margin-top: 1rem;
+  font-weight: 500;
+}
