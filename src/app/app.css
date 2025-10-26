@@ -1,0 +1,46 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background: #f5f6fa;
+  font-family: 'Inter', 'Segoe UI', sans-serif;
+  color: #222;
+}
+
+/* Header */
+.header {
+  text-align: center;
+  padding: 1.5rem 1rem;
+  background: linear-gradient(90deg, #1976d2, #42a5f5);
+  color: #fff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.header h1 {
+  font-weight: 600;
+  margin-bottom: 0.3rem;
+}
+
+.header .tagline {
+  font-size: 0.95rem;
+  opacity: 0.9;
+}
+
+/* Main */
+.content {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+/* Footer */
+.footer {
+  text-align: center;
+  padding: 1rem;
+  background: #f1f3f6;
+  border-top: 1px solid #d1d9e6;
+  color: #555;
+  font-size: 0.85rem;
+}

@@ -1,14 +1,24 @@
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-landing',
   standalone: true,
-  imports: [CommonModule, MatButtonModule, MatIconModule, RouterModule],
+  imports: [MatButtonModule, MatIconModule],
   templateUrl: './landing.html',
-  styleUrls: ['./landing.css']
+  styleUrls: ['./landing.css'],
 })
-export class Landing {}
+export class Landing {
+  constructor(private router: Router) {}
+
+  goToCompare() {
+    this.router.navigate(['/compare']);
+  }
+
+  scrollToFeatures() {
+    const el = document.getElementById('features');
+    el?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+}

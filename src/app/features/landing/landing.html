@@ -1,58 +1,68 @@
 <section class="hero">
-  <div class="hero-content">
-    <h1>Compare AI Models <span class="gradient-text">Smarter.</span></h1>
-    <p class="subtitle">
-      One prompt. Multiple minds. Instantly see how OpenAI, Claude, and Gemini respond —
-      with <strong>insights</strong>, not just answers.
-    </p>
+  <div class="hero-inner">
+    <div class="hero-text">
+      <h1>Compare <span>AI Models</span> Smarter.</h1>
+      <p class="subtext">
+        Discover how OpenAI, Claude, and Gemini think — side by side. 
+        Get instant insights on tone, readability, and coherence to pick the perfect model for your task.
+      </p>
 
-    <div class="cta-buttons">
-      <button mat-flat-button color="primary" routerLink="/compare" class="primary-btn">
-        🚀 Try PromptPerception
-      </button>
-      <button mat-stroked-button color="accent" routerLink="/about" class="secondary-btn">
-        Learn More
-      </button>
+      <div class="cta-buttons">
+        <button mat-flat-button color="primary" class="cta-main" (click)="goToCompare()">
+          🚀 Try PromptPerception
+        </button>
+        <button mat-stroked-button color="accent" (click)="scrollToFeatures()">
+          Learn More
+        </button>
+      </div>
+
+      <div class="trust-points">
+        <span>⚡ Multi-Model Testing</span>
+        <span>📊 Insight-Driven Metrics</span>
+        <span>💾 Save & Revisit Comparisons</span>
+      </div>
     </div>
 
-    <div class="highlight-features">
-      <div>⚡ Multi-Model Testing</div>
-      <div>🧩 Readability & Tone Insights</div>
-      <div>💾 Save & Revisit Comparisons</div>
-    </div>
-  </div>
-
-  <div class="hero-visual">
-    <img src="assets/ai-compare-preview.png" alt="PromptPerception preview" />
-  </div>
-</section>
-
-<!-- How it Works -->
-<section class="how-it-works">
-  <h2>How It Works</h2>
-  <div class="steps">
-    <div class="step">
-      <mat-icon>keyboard</mat-icon>
-      <h3>1. Prompt</h3>
-      <p>Enter a single prompt and send it to multiple AI models at once.</p>
-    </div>
-
-    <div class="step">
-      <mat-icon>compare_arrows</mat-icon>
-      <h3>2. Compare</h3>
-      <p>See their responses side by side — complete with speed and quality metrics.</p>
-    </div>
-
-    <div class="step">
-      <mat-icon>insights</mat-icon>
-      <h3>3. Analyze</h3>
-      <p>Get instant insights on tone, readability, coherence, and cost to choose the best model.</p>
+    <div class="hero-image">
+      <img src="assets/preview-light.png" alt="PromptPerception App Preview" />
     </div>
   </div>
 </section>
 
-<section class="tagline">
-  <p>
-    “PromptPerception helps developers and creators <strong>see what each AI model really thinks</strong>.”
+<section id="features" class="features">
+  <h2>Why Users Love PromptPerception</h2>
+  <p class="feature-intro">
+    It’s not just a comparison tool — it’s your AI research assistant. 
+    Designed for clarity, insight, and better decisions.
   </p>
+
+  <div class="feature-grid">
+    <div class="feature-card">
+      <mat-icon>bolt</mat-icon>
+      <h3>Multi-Model Prompting</h3>
+      <p>Test the same question across multiple AI models instantly — compare creativity, logic, and tone.</p>
+    </div>
+
+    <div class="feature-card">
+      <mat-icon>insights</mat-icon>
+      <h3>Readable, Measurable Insights</h3>
+      <p>Every response comes with readability, tone, and coherence scoring for clear, objective analysis.</p>
+    </div>
+
+    <div class="feature-card">
+      <mat-icon>save</mat-icon>
+      <h3>Save Comparisons</h3>
+      <p>Revisit your previous comparisons anytime. Keep track of which models perform best for your needs.</p>
+    </div>
+
+    <div class="feature-card">
+      <mat-icon>psychology</mat-icon>
+      <h3>Made for Developers & Creators</h3>
+      <p>Whether you’re writing, coding, or researching — see which model gives you the smarter edge.</p>
+    </div>
+  </div>
+
+  <div class="bottom-cta">
+    <button mat-flat-button color="primary" (click)="goToCompare()">Start Comparing Now →</button>
+  </div>
 </section>

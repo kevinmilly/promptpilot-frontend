@@ -1,115 +1,177 @@
-/* --- Hero section styling (same as before) --- */
+/* ===== Base ===== */
 .hero {
+  background: linear-gradient(180deg, #f5f8ff 0%, #eef3f8 100%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 4rem 2rem 5rem;
+}
+
+.hero-inner {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  padding: 4rem 2rem;
-  gap: 2rem;
-  background: linear-gradient(to bottom right, #0b0c10, #121212);
-  color: #fff;
-  min-height: 80vh;
+  max-width: 1100px;
+  width: 100%;
+  background: #fff;
+  border-radius: 20px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
+  padding: 3rem;
 }
 
-.hero-content {
-  flex: 1 1 500px;
-  max-width: 600px;
+.hero-text {
+  flex: 1 1 480px;
+  text-align: left;
 }
 
-.gradient-text {
-  background: linear-gradient(90deg, #3b82f6, #06b6d4);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+.hero-text h1 {
+  font-size: 2.8rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin-bottom: 1rem;
+  line-height: 1.2;
 }
 
-.subtitle {
-  font-size: 1.2rem;
-  color: #b0b0b0;
-  margin-bottom: 2rem;
+.hero-text h1 span {
+  color: #1976d2;
+}
+
+.subtext {
+  font-size: 1.15rem;
+  color: #475569;
   line-height: 1.6;
+  margin-bottom: 1.8rem;
 }
 
 .cta-buttons {
   display: flex;
+  flex-wrap: wrap;
   gap: 1rem;
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
 }
 
-.highlight-features {
+.cta-main {
+  font-weight: 600;
+  font-size: 1rem;
+  padding: 0.8rem 1.8rem;
+}
+
+.trust-points {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.8rem 1.5rem;
-  color: #9ca3af;
+  gap: 1.2rem;
+  color: #555;
   font-size: 0.95rem;
   margin-top: 1rem;
 }
 
-.hero-visual img {
-  max-width: 90%;
-  border-radius: 16px;
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
-}
-
-/* --- How It Works Section --- */
-.how-it-works {
-  background: #f9fafb;
-  color: #1f2937;
+.hero-image {
+  flex: 1 1 420px;
   text-align: center;
-  padding: 4rem 2rem;
 }
 
-.how-it-works h2 {
+.hero-image img {
+  width: 100%;
+  max-width: 430px;
+  border-radius: 14px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+/* ===== Features Section ===== */
+.features {
+  background: #fff;
+  padding: 5rem 1.5rem 6rem;
+  text-align: center;
+}
+
+.features h2 {
   font-size: 2rem;
-  margin-bottom: 2rem;
-}
-
-.steps {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 2rem;
-}
-
-.step {
-  background: white;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  padding: 2rem;
-  width: 280px;
-  transition: transform 0.2s ease;
-}
-
-.step:hover {
-  transform: translateY(-5px);
-}
-
-.step mat-icon {
-  font-size: 2.2rem;
-  color: #06b6d4;
+  color: #0f172a;
+  font-weight: 700;
   margin-bottom: 0.5rem;
 }
 
-.step h3 {
-  margin: 0.5rem 0;
-}
-
-.tagline {
-  text-align: center;
-  padding: 1.5rem 0;
-  background: #101010;
-  color: #a1a1aa;
+.feature-intro {
+  color: #475569;
   font-size: 1.05rem;
-  border-top: 1px solid rgba(255,255,255,0.1);
+  margin-bottom: 3rem;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-/* Mobile-friendly layout */
-@media (max-width: 768px) {
-  .hero {
-    flex-direction: column;
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.feature-card {
+  background: #f9fbff;
+  padding: 2rem;
+  border-radius: 14px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.feature-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.08);
+}
+
+.feature-card mat-icon {
+  font-size: 2.2rem;
+  color: #1976d2;
+  margin-bottom: 0.8rem;
+}
+
+.feature-card h3 {
+  font-size: 1.25rem;
+  color: #0f172a;
+  margin-bottom: 0.5rem;
+}
+
+.feature-card p {
+  font-size: 0.95rem;
+  color: #555;
+  line-height: 1.6;
+}
+
+.bottom-cta {
+  margin-top: 3rem;
+}
+
+.bottom-cta button {
+  font-size: 1rem;
+  font-weight: 600;
+  padding: 0.9rem 2rem;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 900px) {
+  .hero-inner {
+    flex-direction: column-reverse;
     text-align: center;
+    padding: 2rem;
   }
-  .steps {
-    flex-direction: column;
-    align-items: center;
+
+  .hero-text h1 {
+    font-size: 2.2rem;
+  }
+
+  .hero-image img {
+    max-width: 360px;
+    margin-bottom: 1.5rem;
+  }
+
+  .cta-buttons {
+    justify-content: center;
+  }
+
+  .trust-points {
+    justify-content: center;
   }
 }
