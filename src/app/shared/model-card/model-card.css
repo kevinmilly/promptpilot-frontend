@@ -67,3 +67,14 @@
   background: #bbb;
   border-radius: 3px;
 }
+
+.copy-btn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  color: var(--mat-icon-color, rgba(0, 0, 0, 0.54));
+  transition: 0.2s ease;
+}
+.copy-btn:hover {
+  color: #2196f3;
+}

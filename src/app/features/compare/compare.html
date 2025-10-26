@@ -1,4 +1,5 @@
-<mat-card class="input-card">
+<!-- Top Input Card -->
+<mat-card class="input-card glass-card">
   <mat-form-field appearance="outline" class="full-width">
     <mat-label>Enter your prompt</mat-label>
     <textarea
@@ -9,37 +10,74 @@
     ></textarea>
   </mat-form-field>
 
-  <button
-    mat-raised-button
-    color="primary"
-    class="compare-button"
-    (click)="onCompare()"
-    [disabled]="loading || !prompt.trim()"
-  >
-    <mat-icon *ngIf="!loading">bolt</mat-icon>
-    <mat-progress-spinner
-      *ngIf="loading"
-      mode="indeterminate"
-      diameter="20"
+  <div class="button-row">
+    <button
+      mat-flat-button
+      color="primary"
+      class="compare-button"
+      (click)="onCompare()"
+      [disabled]="loading || !prompt.trim()"
+    >
+      <mat-icon *ngIf="!loading">bolt</mat-icon>
+      <mat-progress-spinner
+        *ngIf="loading"
+        mode="indeterminate"
+        diameter="20"
+        color="accent"
+      ></mat-progress-spinner>
+      <span *ngIf="!loading">Compare</span>
+    </button>
+
+    <!-- <button
+      mat-stroked-button
       color="accent"
-    ></mat-progress-spinner>
-    <span *ngIf="!loading">Compare</span>
-  </button>
+      class="api-button"
+      (click)="openApiKeyDialog()"
+    >
+      <mat-icon>vpn_key</mat-icon>
+      Manage API Keys
+    </button> -->
+  </div>
 
   <mat-error *ngIf="error" class="error-message">
     {{ error }}
   </mat-error>
 </mat-card>
 
+<div class="actions-row" *ngIf="results?.length">
+  <button mat-stroked-button color="accent" (click)="copyAll()">
+    <mat-icon>content_copy</mat-icon>
+    Copy All Responses
+  </button>
+</div>
+
+
+<!-- Summary card -->
 <app-summary-card *ngIf="results?.length" [results]="results"></app-summary-card>
 
-<!-- Results section -->
-<div class="results" *ngIf="results?.length">
+<!-- Results grid -->
+<section class="results-grid" *ngIf="results?.length">
   <app-model-card
     *ngFor="let result of results"
     [result]="result"
     class="result-card"
   ></app-model-card>
+</section>
+
+<!-- Saved comparisons -->
+<div class="saved-comparisons" *ngIf="savedComparisons.length">
+  <h3>📂 Saved Comparisons</h3>
+  <ul>
+    <li *ngFor="let item of savedComparisons" (click)="loadComparison(item)">
+      <strong>{{ item.prompt | slice:0:60 }}</strong>
+      <small>{{ item.timestamp | date:'short' }}</small>
+      <button mat-icon-button color="warn" (click)="deleteComparison(item, $event)">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </li>
+  </ul>
+
+  <button mat-flat-button color="warn" (click)="clearAllComparisons()">Clear All</button>
 </div>
 
 <!-- Empty state -->

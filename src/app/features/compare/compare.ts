@@ -11,6 +11,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { ModelCard } from '../../shared/model-card/model-card';
 import { SummaryCard } from '../../shared/summary-card/summary-card';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { Clipboard, ClipboardModule } from '@angular/cdk/clipboard';
 
 
 @Component({
@@ -28,7 +30,8 @@ import { SummaryCard } from '../../shared/summary-card/summary-card';
     MatProgressSpinnerModule,
     MatIconModule,
     ModelCard,
-    SummaryCard
+    SummaryCard,
+    ClipboardModule
   ]
 })
 export class Compare {
@@ -36,8 +39,14 @@ export class Compare {
   results: ModelResult[] = [];
   loading = false;
   error = '';
+  savedComparisons: any[] = [];
 
-  constructor(private compareService: CompareService) { }
+  constructor(private compareService: CompareService, private clipboard: Clipboard,
+    private snackBar: MatSnackBar) { }
+
+  ngOnInit() {
+    this.loadSavedComparisons();
+  }
 
   onCompare() {
     if (!this.prompt.trim()) return;
@@ -57,5 +66,61 @@ export class Compare {
         this.loading = false;
       },
     });
+  }
+
+  copyAll() {
+    if (!this.results?.length) return;
+
+    const allText = this.results
+      .map(
+        (r) =>
+          `🧠 ${r.metadata.name} (${r.metadata.provider})\n${r.text}\n\n-----------------------------\n`
+      )
+      .join('\n');
+
+    this.clipboard.copy(allText);
+    this.snackBar.open('All responses copied!', '', { duration: 2500 });
+  }
+
+  // Save current comparison to localStorage
+  saveComparison() {
+    if (!this.results?.length) return;
+
+    const entry = {
+      prompt: this.prompt,
+      results: this.results,
+      timestamp: new Date().toISOString(),
+    };
+
+    const stored = JSON.parse(localStorage.getItem('comparisons') || '[]');
+    stored.unshift(entry); // latest on top
+    localStorage.setItem('comparisons', JSON.stringify(stored));
+
+    this.loadSavedComparisons();
+  }
+
+  // Load from storage on init
+  loadSavedComparisons() {
+    this.savedComparisons = JSON.parse(localStorage.getItem('comparisons') || '[]');
+  }
+
+  // Load one comparison back into view
+  loadComparison(item: any) {
+    this.prompt = item.prompt;
+    this.results = item.results;
+  }
+
+  // Delete one saved comparison
+  deleteComparison(item: any, event: MouseEvent) {
+    event.stopPropagation(); // prevent triggering load
+    const filtered = this.savedComparisons.filter(i => i.timestamp !== item.timestamp);
+    localStorage.setItem('comparisons', JSON.stringify(filtered));
+    this.loadSavedComparisons();
+  }
+
+  // Clear all
+  clearAllComparisons() {
+    localStorage.removeItem('comparisons');
+    this.savedComparisons = [];
   }
 }

@@ -1,79 +1,228 @@
+/* ===============================
+   GLOBAL LAYOUT
+=============================== */
 :host {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-bottom: 4rem;
+  background: linear-gradient(180deg, #f9fafb 0%, #eef1f5 100%);
+  min-height: 100vh;
+  width: 100%;
+  padding: 2rem 1rem 4rem;
+  font-family: "Inter", "Roboto", sans-serif;
+  color: #1b1b1b;
 }
 
-
-.results {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 1rem;
-  margin-top: 1.5rem;
-}
-
-/* Model cards */
-.result-card {
-  flex: 1 1 300px;
-  max-width: 380px;
-  min-width: 280px;
-}
-
-/* Input card responsiveness */
+/* ===============================
+   INPUT CARD (Prompt area)
+=============================== */
 .input-card {
-  max-width: 700px;
-  margin: 1rem auto;
-  width: 90%;
+  width: 100%;
+  max-width: 800px;
+  margin: 1rem auto 1.5rem auto;
+  padding: 1.25rem 1.5rem;
+  border-radius: 14px;
+  background: #ffffff;
+  border: 1px solid #e3e6ea;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  transition: all 0.25s ease;
 }
 
-/* Summary card layout */
+.input-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+}
+
+.full-width {
+  width: 100%;
+}
+
+textarea {
+  color: #111;
+  font-size: 1rem;
+  line-height: 1.5;
+  min-height: 90px;
+}
+
+/* ===============================
+   BUTTON & SPINNER
+=============================== */
+.compare-button {
+  margin-top: 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  font-weight: 500;
+  letter-spacing: 0.3px;
+  border-radius: 8px;
+}
+
+.compare-button mat-icon {
+  font-size: 18px;
+}
+
+/* ===============================
+   RESULTS GRID
+=============================== */
+.results,
+.results-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+  gap: 1.5rem;
+  width: 100%;
+  max-width: 1200px;
+  margin-top: 2rem;
+  justify-items: center;
+  transition: all 0.3s ease;
+}
+
+/* Hold desktop layout until smaller breakpoints */
+@media (max-width: 1024px) {
+  .results,
+  .results-grid {
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  }
+}
+
+/* Collapse to single column only when under 700px */
+@media (max-width: 700px) {
+  .results,
+  .results-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ===============================
+   MODEL CARDS
+=============================== */
+.result-card {
+  width: 100%;
+  max-width: 380px;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.result-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.08);
+}
+
+/* ===============================
+   SUMMARY CARD
+=============================== */
 app-summary-card {
   display: block;
-  max-width: 700px;
-  margin: 1rem auto;
-  width: 90%;
+  width: 100%;
+  max-width: 800px;
+  margin: 1rem auto 0 auto;
 }
 
-/* Textarea adjusts on mobile */
-textarea {
-  font-size: 1rem;
-  line-height: 1.4;
+/* ===============================
+   EMPTY STATE
+=============================== */
+.empty-state {
+  text-align: center;
+  margin-top: 2rem;
+  font-size: 0.95rem;
+  opacity: 0.75;
+  color: #4a4a4a;
 }
 
-/* Responsive typography and spacing */
+/* Add subtle emoji accent color */
+.empty-state p {
+  color: #333;
+  font-weight: 400;
+}
+
+/* ===============================
+   RESPONSIVE ADJUSTMENTS
+=============================== */
 @media (max-width: 768px) {
-  .results {
-    flex-direction: column;
-    align-items: center;
+  textarea {
+    font-size: 0.95rem;
   }
 
-  .result-card {
-    width: 95%;
+
+
+ /* ===============================
+   SAVING COMPARISON FEATURES
+=============================== */ 
+.saved-comparisons {
+  margin-top: 2rem;
+  max-width: 800px;
+  width: 100%;
+  background: #fff;
+  border: 1px solid #e5e8eb;
+  border-radius: 12px;
+  padding: 1rem 1.25rem;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+}
+
+.saved-comparisons h3 {
+  font-size: 1.1rem;
+  margin-bottom: 0.75rem;
+  color: #333;
+}
+
+.saved-comparisons ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.saved-comparisons li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #f0f1f3;
+  padding: 0.5rem 0;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.saved-comparisons li:hover {
+  background: #f9fafc;
+}
+
+.saved-comparisons button {
+  opacity: 0.7;
+  transition: opacity 0.2s;
+}
+
+.saved-comparisons button:hover {
+  opacity: 1;
+}
+
+.actions {
+  text-align: center;
+  margin: 1rem 0;
+}
+
+  .compare-button {
+    width: 100%;
   }
 
-  mat-card-title {
-    font-size: 1rem;
-  }
-
-  .summary-card mat-card-title {
-    font-size: 1.1rem;
+  .input-card {
+    padding: 1rem;
   }
 }
 
 @media (max-width: 480px) {
   textarea {
     font-size: 0.9rem;
-    min-height: 80px;
   }
 
-  .metric-row {
-    flex-direction: column;
-    gap: 0.2rem;
-  }
-
-  .response-text {
+  .empty-state {
     font-size: 0.9rem;
   }
 }
+
+.actions-row {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  max-width: 700px;
+  margin: 0 auto 1rem auto;
+  width: 90%;
+}
+
