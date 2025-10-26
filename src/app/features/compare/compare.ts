@@ -96,6 +96,9 @@ export class Compare {
     stored.unshift(entry); // latest on top
     localStorage.setItem('comparisons', JSON.stringify(stored));
 
+    this.snackBar.open('Comparison saved!', '', { duration: 2000 });
+
+
     this.loadSavedComparisons();
   }
 

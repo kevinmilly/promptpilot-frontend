@@ -51,6 +51,18 @@
   </button>
 </div>
 
+<div class="actions-row" *ngIf="results?.length">
+  <button mat-stroked-button color="accent" (click)="copyAll()">
+    <mat-icon>content_copy</mat-icon>
+    Copy All Responses
+  </button>
+
+  <button mat-flat-button color="primary" (click)="saveComparison()">
+    <mat-icon>save</mat-icon>
+    Save Comparison
+  </button>
+</div>
+
 
 <!-- Summary card -->
 <app-summary-card *ngIf="results?.length" [results]="results"></app-summary-card>
