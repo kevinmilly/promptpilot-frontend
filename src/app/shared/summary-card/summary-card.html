@@ -1,21 +1,43 @@
 <mat-card class="summary-card">
-  <mat-card-title>📊 Model Comparison Summary</mat-card-title>
+  <mat-card-title>🏆 Model Comparison Summary</mat-card-title>
+
   <mat-card-content>
-    <div class="summary-row">
-      <strong>⚡ Fastest:</strong>
-      <span>{{ fastestModel }}</span>
-    </div>
-    <div class="summary-row">
-      <strong>🧠 Most Readable:</strong>
-      <span>{{ mostReadable }}</span>
-    </div>
-    <div class="summary-row">
-      <strong>🔗 Most Coherent:</strong>
-      <span>{{ mostCoherent }}</span>
-    </div>
-    <div class="summary-row">
-      <strong>💰 Cheapest:</strong>
-      <span>{{ cheapestModel }}</span>
+    <div class="summary-grid">
+      <div class="summary-item fastest">
+        <div class="icon">⚡</div>
+        <div class="label">
+          <strong>Fastest</strong>
+          <span class="model">{{ fastestModel }}</span>
+        </div>
+        <span class="badge">Speed 🥇</span>
+      </div>
+
+      <div class="summary-item readable">
+        <div class="icon">🧠</div>
+        <div class="label">
+          <strong>Most Readable</strong>
+          <span class="model">{{ mostReadable }}</span>
+        </div>
+        <span class="badge">Clarity 💎</span>
+      </div>
+
+      <div class="summary-item coherent">
+        <div class="icon">🔗</div>
+        <div class="label">
+          <strong>Most Coherent</strong>
+          <span class="model">{{ mostCoherent }}</span>
+        </div>
+        <span class="badge">Logic 🧩</span>
+      </div>
+
+      <div class="summary-item cheapest">
+        <div class="icon">💰</div>
+        <div class="label">
+          <strong>Cheapest</strong>
+          <span class="model">{{ cheapestModel }}</span>
+        </div>
+        <span class="badge">Efficiency 🪙</span>
+      </div>
     </div>
   </mat-card-content>
 </mat-card>

@@ -1,54 +1,60 @@
 <mat-card class="model-card" [ngClass]="providerClass(result.metadata.provider)">
-  <mat-card-header>
-    <mat-card-title>{{ result.metadata.name }}</mat-card-title>
-    <mat-card-subtitle>{{ result.metadata.provider }}</mat-card-subtitle>
-     <button mat-icon-button class="copy-btn" (click)="copyText(result.text)" matTooltip="Copy response">
+  <!-- Header -->
+  <mat-card-header class="model-header">
+    <div class="model-info">
+      <mat-card-title>{{ result.metadata.name }}</mat-card-title>
+      <mat-card-subtitle>{{ result.metadata.provider }}</mat-card-subtitle>
+    </div>
+    <button mat-icon-button class="copy-btn" (click)="copyText(result.text)" matTooltip="Copy response">
       <mat-icon>content_copy</mat-icon>
     </button>
   </mat-card-header>
 
+  <!-- Metrics Summary Bar -->
+  <div class="metrics-bar">
+    <div class="metric">
+      ⚡ <span>{{ result.latency }} ms</span>
+      <small>Latency</small>
+    </div>
+    <div class="metric">
+      💬 <span>{{ result.tokens }}</span>
+      <small>Tokens</small>
+    </div>
+    <div class="metric">
+      💰
+      <span>
+        {{
+        (result.insights?.estimatedCostUSD ?? 0) > 0
+        ? (result.insights?.estimatedCostUSD | currency : 'USD' : 'symbol' : '1.4-4')
+        : 'N/A'
+        }}
+
+      </span>
+      <small>Cost</small>
+    </div>
+    <div class="metric">
+      🧠
+      <span [class.good]="(result.insights?.readability ?? 0) > 60" [class.medium]="
+          (result.insights?.readability ?? 0) > 30 &&
+          (result.insights?.readability ?? 0) <= 60
+        " [class.bad]="(result.insights?.readability ?? 0) <= 30">
+        {{ result.insights?.readability ?? 'N/A' }}
+      </span>
+      <small>Readability</small>
+    </div>
+    <div class="metric">
+      🧩 <span>{{ (result.insights?.coherence ?? 0) | number : '1.0-2' }}</span>
+      <small>Coherence</small>
+    </div>
+  </div>
+
+  <!-- Response -->
   <mat-card-content>
     <p class="response-text">{{ result.text }}</p>
 
-    <div class="metrics">
-      <div class="metric-row">
-        <span>⚡ {{ result.latency }} ms</span>
-        <span>💬 {{ result.tokens }} tokens</span>
-        <span>
-          💰
-          {{
-            result.insights?.estimatedCostUSD
-              ? (result.insights?.estimatedCostUSD | currency : 'USD' : 'symbol' : '1.4-4')
-              : 'N/A'
-          }}
-        </span>
-      </div>
-
-      <div class="metric-row">
-        <span>
-          🧠 Readability:
-          <span
-            [class.good]="(result.insights?.readability ?? 0) > 60"
-            [class.medium]="
-              (result.insights?.readability ?? 0) > 30 &&
-              (result.insights?.readability ?? 0) <= 60
-            "
-            [class.bad]="(result.insights?.readability ?? 0) <= 30"
-          >
-            {{ result.insights?.readability ?? 'N/A' }}
-          </span>
-        </span>
-        <span>🎭 Tone: {{ result.insights?.tone ?? 'N/A' }}</span>
-      </div>
-
-      <div class="metric-row">
-        <span>🔗 Coherence:</span>
-        <mat-progress-bar
-          mode="determinate"
-          [value]="(result.insights?.coherence ?? 0) * 100"
-          color="accent"
-        ></mat-progress-bar>
-      </div>
+    <!-- Tone Row -->
+    <div class="metric-row tone-row">
+      <span>🎭 Tone: {{ result.insights?.tone ?? 'N/A' }}</span>
     </div>
   </mat-card-content>
 </mat-card>
