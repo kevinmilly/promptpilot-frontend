@@ -5,24 +5,7 @@ import { Compare } from './features/compare/compare';
   selector: 'app-root',
   standalone: true,
   imports: [Compare],
-  template: `
-    <main>
-      <h1 class="app-title"> PromptPerception 🚀</h1>
-      <app-compare></app-compare>
-    </main>
-  `,
-  styles: [
-    `
-      main {
-        max-width: 900px;
-        margin: 2rem auto;
-      }
-      .app-title {
-        text-align: center;
-        font-size: 2rem;
-        margin-bottom: 1rem;
-      }
-    `,
-  ],
+  templateUrl: './compare.html',
+  styleUrls: ['./compare.css'],
 })
-export class App {}
+export class App { }
