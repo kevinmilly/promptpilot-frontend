@@ -14,6 +14,6 @@ export class CompareService {
   constructor(private http: HttpClient) {}
 
   compare(prompt: string): Observable<ModelResult[]> {
-    return this.http.post<ModelResult[]>(this.apiUrl, { prompt });
+    return this.http.post<ModelResult[]>(`${this.apiUrl}/compare`, { prompt });
   }
 }
