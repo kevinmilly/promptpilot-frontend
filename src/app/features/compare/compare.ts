@@ -40,6 +40,9 @@ export class Compare {
   loading = false;
   error = '';
   savedComparisons: any[] = [];
+  loadingStep = 0;
+  private stepInterval: any;
+
 
   constructor(private compareService: CompareService, private clipboard: Clipboard,
     private snackBar: MatSnackBar) { }
@@ -54,18 +57,32 @@ export class Compare {
     this.loading = true;
     this.error = '';
     this.results = [];
+    this.loadingStep = 0;
+    this.animateLoadingConsole();
 
     this.compareService.compare(this.prompt).subscribe({
       next: (data) => {
         this.results = data || [];
         this.loading = false;
-        this.loading = false;
+        clearInterval(this.stepInterval);
       },
       error: (err) => {
         this.error = 'Error contacting backend';
         this.loading = false;
+        clearInterval(this.stepInterval);
       },
     });
+  }
+
+  // Animate step-by-step loading log
+  private animateLoadingConsole() {
+    this.loadingStep = 0;
+    clearInterval(this.stepInterval);
+
+    this.stepInterval = setInterval(() => {
+      this.loadingStep++;
+      if (this.loadingStep > 6) clearInterval(this.stepInterval);
+    }, 600); // new line every 0.6s
   }
 
   copyAll() {

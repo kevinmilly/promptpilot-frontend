@@ -290,3 +290,25 @@ textarea {
 .mat-error {
   flex-shrink: 0;
 }
+
+.loading-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+  animation: fadeIn 0.3s ease-in;
+}
+
+.loading-console {
+  font-family: 'JetBrains Mono', monospace;
+  background: #111;
+  color: #00ff88;
+  padding: 1rem 1.5rem;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 700px;
+  min-height: 130px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  line-height: 1.4;
+}

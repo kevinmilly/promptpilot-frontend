@@ -71,6 +71,31 @@
   ></app-model-card>
 </section>
 
+<!-- 🔥 Animated console + skeleton loader -->
+<section *ngIf="loading" class="loading-section">
+  <div class="loading-console">
+    <pre>
+      <ng-container *ngIf="loadingStep >= 1">⏳ Connecting to models...</ng-container>
+      <ng-container *ngIf="loadingStep >= 2">⚙️ Querying Gemini...</ng-container>
+      <ng-container *ngIf="loadingStep >= 3">⚙️ Querying Chat GPT...</ng-container>
+      <ng-container *ngIf="loadingStep >= 4">⚙️ Querying Claude...</ng-container>
+      <ng-container *ngIf="loadingStep >= 5">💡 Collecting insights...</ng-container>
+      <ng-container *ngIf="loadingStep >= 6">✅ Preparing comparison results...</ng-container>
+    </pre>
+  </div>
+
+  <div class="skeleton-grid">
+    <div class="skeleton-card" *ngFor="let i of [1,2,3]">
+      <div class="skeleton-header"></div>
+      <div class="skeleton-line short"></div>
+      <div class="skeleton-line"></div>
+      <div class="skeleton-line"></div>
+      <div class="skeleton-line long"></div>
+    </div>
+  </div>
+</section>
+
+
 <!-- Saved Comparisons -->
 <div class="saved-comparisons" *ngIf="savedComparisons.length">
   <h3>📂 Saved Comparisons</h3>

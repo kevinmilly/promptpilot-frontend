@@ -38,9 +38,20 @@
 /* Footer */
 .footer {
   text-align: center;
-  padding: 1rem;
-  background: #f1f3f6;
-  border-top: 1px solid #d1d9e6;
+  padding: 1rem 0;
+  font-size: 0.9rem;
   color: #555;
-  font-size: 0.85rem;
+  border-top: 1px solid #eee;
+}
+
+.disclaimer-link {
+  color: #007bff;
+  cursor: pointer;
+  margin-left: 8px;
+  text-decoration: underline;
+  transition: color 0.2s;
+}
+
+.disclaimer-link:hover {
+  color: #0056b3;
 }
