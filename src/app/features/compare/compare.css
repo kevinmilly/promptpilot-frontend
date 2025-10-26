@@ -79,6 +79,7 @@ textarea {
 
 /* Hold desktop layout until smaller breakpoints */
 @media (max-width: 1024px) {
+
   .results,
   .results-grid {
     grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -87,11 +88,34 @@ textarea {
 
 /* Collapse to single column only when under 700px */
 @media (max-width: 700px) {
+
   .results,
   .results-grid {
     grid-template-columns: 1fr;
   }
 }
+
+.results {
+  opacity: 0;
+  transform: translateY(10px);
+  transition: all 0.35s ease;
+}
+
+.results.ng-star-inserted {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.results-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: 1.5rem;
+  justify-content: center;
+  margin: 2rem auto;
+  max-width: 1100px;
+  width: 90%;
+}
+
 
 /* ===============================
    MODEL CARDS
@@ -144,59 +168,59 @@ app-summary-card {
 
 
 
- /* ===============================
+  /* ===============================
    SAVING COMPARISON FEATURES
-=============================== */ 
-.saved-comparisons {
-  margin-top: 2rem;
-  max-width: 800px;
-  width: 100%;
-  background: #fff;
-  border: 1px solid #e5e8eb;
-  border-radius: 12px;
-  padding: 1rem 1.25rem;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.06);
-}
+=============================== */
+  .saved-comparisons {
+    margin-top: 2rem;
+    max-width: 800px;
+    width: 100%;
+    background: #fff;
+    border: 1px solid #e5e8eb;
+    border-radius: 12px;
+    padding: 1rem 1.25rem;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+  }
 
-.saved-comparisons h3 {
-  font-size: 1.1rem;
-  margin-bottom: 0.75rem;
-  color: #333;
-}
+  .saved-comparisons h3 {
+    font-size: 1.1rem;
+    margin-bottom: 0.75rem;
+    color: #333;
+  }
 
-.saved-comparisons ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
+  .saved-comparisons ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
 
-.saved-comparisons li {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-bottom: 1px solid #f0f1f3;
-  padding: 0.5rem 0;
-  cursor: pointer;
-  transition: background 0.2s;
-}
+  .saved-comparisons li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #f0f1f3;
+    padding: 0.5rem 0;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
 
-.saved-comparisons li:hover {
-  background: #f9fafc;
-}
+  .saved-comparisons li:hover {
+    background: #f9fafc;
+  }
 
-.saved-comparisons button {
-  opacity: 0.7;
-  transition: opacity 0.2s;
-}
+  .saved-comparisons button {
+    opacity: 0.7;
+    transition: opacity 0.2s;
+  }
 
-.saved-comparisons button:hover {
-  opacity: 1;
-}
+  .saved-comparisons button:hover {
+    opacity: 1;
+  }
 
-.actions {
-  text-align: center;
-  margin: 1rem 0;
-}
+  .actions {
+    text-align: center;
+    margin: 1rem 0;
+  }
 
   .compare-button {
     width: 100%;
@@ -217,12 +241,52 @@ app-summary-card {
   }
 }
 
+
 .actions-row {
   display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  max-width: 700px;
-  margin: 0 auto 1rem auto;
-  width: 90%;
+  justify-content: center;
+  gap: 1rem;
+  /* 👈 creates breathing room */
+  margin: 1.5rem 0;
+  flex-wrap: wrap;
 }
 
+.actions-row button {
+  border-radius: 8px;
+  padding: 0.7rem 1.4rem;
+  font-weight: 600;
+  min-width: 180px;
+  transition: all 0.25s ease;
+}
+
+.actions-row button:hover {
+  transform: translateY(-2px);
+}
+
+
+/* Keep prompt input area size stable */
+.input-card {
+  max-width: 700px;
+  width: 90%;
+  margin: 1rem auto;
+  min-height: 220px;
+  /* 👈 prevents shrinking */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+textarea {
+  resize: vertical;
+  /* user can resize but it won’t auto-shrink */
+  min-height: 100px;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+/* When loading, don’t collapse the layout */
+.compare-button,
+.mat-error {
+  flex-shrink: 0;
+}

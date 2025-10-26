@@ -1,80 +1,67 @@
 .model-card {
-  width: 340px;
-  padding: 8px 12px 12px 12px;
+  border-radius: 14px;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  background: #ffffff;
+  padding: 1.5rem;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 
-.response-text {
+.model-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+/* Header Styling */
+mat-card-title {
+  font-weight: 600;
+  font-size: 1.2rem;
+  margin-bottom: 0.3rem;
+}
+
+mat-card-subtitle {
+  color: #6b7280;
   font-size: 0.9rem;
-  line-height: 1.4;
-  color: #333;
-  margin-bottom: 12px;
-  max-height: 300px;
-  overflow-y: auto;
+  margin-bottom: 0.8rem;
 }
 
+/* Response Text */
+.response-text {
+  flex: 1;
+  color: #1e293b;
+  font-size: 0.96rem;
+  line-height: 1.55;
+  margin-bottom: 1rem;
+  white-space: pre-wrap;
+}
+
+/* Metrics Section */
 .metrics {
-  font-size: 0.85rem;
-  color: #555;
+  border-top: 1px solid #f1f5f9;
+  padding-top: 0.8rem;
+  margin-top: auto;
 }
 
 .metric-row {
   display: flex;
-  align-items: center;
   justify-content: space-between;
-  margin: 4px 0;
-  gap: 6px;
+  font-size: 0.88rem;
+  color: #475569;
+  margin: 0.3rem 0;
 }
 
-.good {
-  color: #43a047;
-  font-weight: 600;
+/* Tags and badges */
+.metric-row span {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
 }
 
-.medium {
-  color: #f9a825;
-  font-weight: 600;
-}
-
-.bad {
-  color: #e53935;
-  font-weight: 600;
-}
-
-/* provider accent borders */
-.openai {
-  border-left: 4px solid #10a37f;
-}
-.anthropic {
-  border-left: 4px solid #c92d2d;
-}
-.google {
-  border-left: 4px solid #4285f4;
-}
-
-.response-text {
-  max-height: 220px;
-  overflow-y: auto;
-  line-height: 1.5;
-  white-space: pre-wrap;
-  padding-right: 4px;
-}
-
-/* Optional: nicer scrollbar */
-.response-text::-webkit-scrollbar {
-  width: 6px;
-}
-.response-text::-webkit-scrollbar-thumb {
-  background: #bbb;
-  border-radius: 3px;
-}
-
-.copy-btn {
-  position: absolute;
-  top: 8px;
-  right: 8px;
-  color: var(--mat-icon-color, rgba(0, 0, 0, 0.54));
-  transition: 0.2s ease;
-}
-.copy-btn:hover {
-  color: #2196f3;
+mat-progress-bar {
+  height: 6px;
+  border-radius: 4px;
+  margin-top: 0.3rem;
 }
