@@ -62,6 +62,26 @@
 <!-- Summary Card -->
 <app-summary-card *ngIf="results?.length" [results]="results"></app-summary-card>
 
+<!-- Explain Metrics Section -->
+<div *ngIf="results?.length" class="metrics-explainer-container">
+  <div class="metrics-header">
+    <h3>📘 Understanding Your Metrics</h3>
+    <button mat-stroked-button color="accent" (click)="showInfo = !showInfo">
+      <mat-icon>{{ showInfo ? 'expand_less' : 'info_outline' }}</mat-icon>
+      {{ showInfo ? 'Hide Info' : 'Explain Metrics' }}
+    </button>
+  </div>
+
+  <div *ngIf="showInfo" class="metrics-info glass-panel">
+    <p><b>⚡ Latency:</b> How long the model took to respond (in milliseconds). Lower is faster.</p>
+    <p><b>💬 Tokens:</b> The approximate number of tokens used. More tokens = longer or more complex responses.</p>
+    <p><b>💰 Cost:</b> The estimated price for generating the response, based on tokens and each model’s rate.</p>
+    <p><b>🧠 Readability:</b> Measures how easy the text is to read — higher scores mean simpler, clearer writing.</p>
+    <p><b>🎭 Tone:</b> The overall emotional or stylistic tone detected (e.g., neutral, positive, formal).</p>
+    <p><b>🔗 Coherence:</b> How logically connected and consistent the response is compared to other models.</p>
+  </div>
+</div>
+
 <!-- Results Grid -->
 <section class="results-grid" *ngIf="results?.length">
   <app-model-card

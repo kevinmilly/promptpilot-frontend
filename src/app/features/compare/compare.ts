@@ -42,6 +42,7 @@ export class Compare {
   savedComparisons: any[] = [];
   loadingStep = 0;
   private stepInterval: any;
+  showInfo = false;
 
 
   constructor(private compareService: CompareService, private clipboard: Clipboard,
