@@ -7,7 +7,7 @@ import { Compare } from './features/compare/compare';
   imports: [Compare],
   template: `
     <main>
-      <h1 class="app-title">PromptPilot 🚀</h1>
+      <h1 class="app-title"> PromptPerception 🚀</h1>
       <app-compare></app-compare>
     </main>
   `,

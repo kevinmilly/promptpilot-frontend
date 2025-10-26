@@ -1,0 +1,115 @@
+/* --- Hero section styling (same as before) --- */
+.hero {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  padding: 4rem 2rem;
+  gap: 2rem;
+  background: linear-gradient(to bottom right, #0b0c10, #121212);
+  color: #fff;
+  min-height: 80vh;
+}
+
+.hero-content {
+  flex: 1 1 500px;
+  max-width: 600px;
+}
+
+.gradient-text {
+  background: linear-gradient(90deg, #3b82f6, #06b6d4);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.subtitle {
+  font-size: 1.2rem;
+  color: #b0b0b0;
+  margin-bottom: 2rem;
+  line-height: 1.6;
+}
+
+.cta-buttons {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.highlight-features {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem 1.5rem;
+  color: #9ca3af;
+  font-size: 0.95rem;
+  margin-top: 1rem;
+}
+
+.hero-visual img {
+  max-width: 90%;
+  border-radius: 16px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+}
+
+/* --- How It Works Section --- */
+.how-it-works {
+  background: #f9fafb;
+  color: #1f2937;
+  text-align: center;
+  padding: 4rem 2rem;
+}
+
+.how-it-works h2 {
+  font-size: 2rem;
+  margin-bottom: 2rem;
+}
+
+.steps {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
+.step {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  padding: 2rem;
+  width: 280px;
+  transition: transform 0.2s ease;
+}
+
+.step:hover {
+  transform: translateY(-5px);
+}
+
+.step mat-icon {
+  font-size: 2.2rem;
+  color: #06b6d4;
+  margin-bottom: 0.5rem;
+}
+
+.step h3 {
+  margin: 0.5rem 0;
+}
+
+.tagline {
+  text-align: center;
+  padding: 1.5rem 0;
+  background: #101010;
+  color: #a1a1aa;
+  font-size: 1.05rem;
+  border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+/* Mobile-friendly layout */
+@media (max-width: 768px) {
+  .hero {
+    flex-direction: column;
+    text-align: center;
+  }
+  .steps {
+    flex-direction: column;
+    align-items: center;
+  }
+}

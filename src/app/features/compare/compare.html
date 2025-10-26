@@ -28,7 +28,8 @@
       <span *ngIf="!loading">Compare</span>
     </button>
 
-    <!-- <button
+    <!-- Optional: API Key button (disabled for now)
+    <button
       mat-stroked-button
       color="accent"
       class="api-button"
@@ -36,7 +37,8 @@
     >
       <mat-icon>vpn_key</mat-icon>
       Manage API Keys
-    </button> -->
+    </button>
+    -->
   </div>
 
   <mat-error *ngIf="error" class="error-message">
@@ -44,12 +46,12 @@
   </mat-error>
 </mat-card>
 
+<!-- Action Buttons (Copy / Save) -->
 <div class="actions-row" *ngIf="results?.length">
   <button mat-stroked-button color="accent" (click)="copyAll()">
     <mat-icon>content_copy</mat-icon>
     Copy All Responses
   </button>
-</div>
 
   <button mat-flat-button color="primary" (click)="saveComparison()">
     <mat-icon>save</mat-icon>
@@ -57,11 +59,10 @@
   </button>
 </div>
 
-
-<!-- Summary card -->
+<!-- Summary Card -->
 <app-summary-card *ngIf="results?.length" [results]="results"></app-summary-card>
 
-<!-- Results grid -->
+<!-- Results Grid -->
 <section class="results-grid" *ngIf="results?.length">
   <app-model-card
     *ngFor="let result of results"
@@ -70,23 +71,29 @@
   ></app-model-card>
 </section>
 
-<!-- Saved comparisons -->
+<!-- Saved Comparisons -->
 <div class="saved-comparisons" *ngIf="savedComparisons.length">
   <h3>📂 Saved Comparisons</h3>
   <ul>
     <li *ngFor="let item of savedComparisons" (click)="loadComparison(item)">
-      <strong>{{ item.prompt | slice:0:60 }}</strong>
-      <small>{{ item.timestamp | date:'short' }}</small>
-      <button mat-icon-button color="warn" (click)="deleteComparison(item, $event)">
+      <strong>{{ item.prompt | slice: 0:60 }}</strong>
+      <small>{{ item.timestamp | date: 'short' }}</small>
+      <button
+        mat-icon-button
+        color="warn"
+        (click)="deleteComparison(item, $event)"
+      >
         <mat-icon>delete</mat-icon>
       </button>
     </li>
   </ul>
 
-  <button mat-flat-button color="warn" (click)="clearAllComparisons()">Clear All</button>
+  <button mat-flat-button color="warn" (click)="clearAllComparisons()">
+    Clear All
+  </button>
 </div>
 
-<!-- Empty state -->
+<!-- Empty State -->
 <div class="empty-state" *ngIf="!loading && !results?.length && !error">
   <p>🧠 Enter a prompt and click Compare to see how models respond.</p>
 </div>
