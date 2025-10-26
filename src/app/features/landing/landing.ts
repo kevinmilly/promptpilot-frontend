@@ -11,10 +11,12 @@ import { MatIconModule } from '@angular/material/icon';
   styleUrls: ['./landing.css'],
 })
 export class Landing {
-  constructor(private router: Router) {}
+  constructor(private router: Router) { }
 
   goToCompare() {
-    this.router.navigate(['/compare']);
+    this.router.navigate(['/compare']).then(() => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
   }
 
   scrollToFeatures() {
