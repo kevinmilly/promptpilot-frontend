@@ -19,6 +19,8 @@ import { Clipboard, ClipboardModule } from '@angular/cdk/clipboard';
 })
 export class ModelCard {
   @Input() result!: ModelResult;
+  @Input() viewMode: 'full' | 'compact' = 'full';
+
 
   constructor(private clipboard: Clipboard, private snackBar: MatSnackBar) { }
 

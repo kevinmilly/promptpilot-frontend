@@ -2,29 +2,15 @@
 <mat-card class="input-card glass-card">
   <mat-form-field appearance="outline" class="full-width">
     <mat-label>Enter your prompt</mat-label>
-    <textarea
-      matInput
-      [(ngModel)]="prompt"
-      rows="3"
-      placeholder="Ask something like 'Explain quantum computing simply'"
-    ></textarea>
+    <textarea matInput [(ngModel)]="prompt" rows="3"
+      placeholder="Ask something like 'Explain quantum computing simply'"></textarea>
   </mat-form-field>
 
   <div class="button-row">
-    <button
-      mat-flat-button
-      color="primary"
-      class="compare-button"
-      (click)="onCompare()"
-      [disabled]="loading || !prompt.trim()"
-    >
+    <button mat-flat-button color="primary" class="compare-button" (click)="onCompare()"
+      [disabled]="loading || !prompt.trim()">
       <mat-icon *ngIf="!loading">bolt</mat-icon>
-      <mat-progress-spinner
-        *ngIf="loading"
-        mode="indeterminate"
-        diameter="20"
-        color="accent"
-      ></mat-progress-spinner>
+      <mat-progress-spinner *ngIf="loading" mode="indeterminate" diameter="20" color="accent"></mat-progress-spinner>
       <span *ngIf="!loading">Compare</span>
     </button>
 
@@ -82,14 +68,20 @@
   </div>
 </div>
 
+<!-- View Mode Toggle -->
+<div *ngIf="results?.length" class="view-toggle">
+  <mat-button-toggle-group [(ngModel)]="viewMode" aria-label="View mode">
+    <mat-button-toggle value="full">🧩 Full View</mat-button-toggle>
+    <mat-button-toggle value="compact">📊 Compact View</mat-button-toggle>
+  </mat-button-toggle-group>
+</div>
+
 <!-- Results Grid -->
 <section class="results-grid" *ngIf="results?.length">
-  <app-model-card
-    *ngFor="let result of results"
-    [result]="result"
-    class="result-card"
-  ></app-model-card>
+  <app-model-card *ngFor="let result of results" [result]="result" [viewMode]="viewMode"
+    class="result-card"></app-model-card>
 </section>
+
 
 <!-- 🔥 Animated console + skeleton loader -->
 <section *ngIf="loading" class="loading-section">
@@ -123,11 +115,7 @@
     <li *ngFor="let item of savedComparisons" (click)="loadComparison(item)">
       <strong>{{ item.prompt | slice: 0:60 }}</strong>
       <small>{{ item.timestamp | date: 'short' }}</small>
-      <button
-        mat-icon-button
-        color="warn"
-        (click)="deleteComparison(item, $event)"
-      >
+      <button mat-icon-button color="warn" (click)="deleteComparison(item, $event)">
         <mat-icon>delete</mat-icon>
       </button>
     </li>

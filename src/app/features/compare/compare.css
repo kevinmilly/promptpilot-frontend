@@ -355,3 +355,52 @@ textarea {
     gap: 0.5rem;
   }
 }
+
+/* ===============================
+   VIEW MODE TOGGLE
+=============================== */
+.view-toggle {
+  display: flex;
+  justify-content: center;
+  margin: 1rem auto 0 auto;
+}
+
+mat-button-toggle-group {
+  border-radius: 10px;
+  background: #fff;
+  border: 1px solid #d1d5db;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+}
+
+mat-button-toggle {
+  font-weight: 500;
+  font-size: 0.95rem;
+  padding: 0.4rem 1rem;
+}
+
+mat-button-toggle-checked {
+  background: #2196f3 !important;
+  color: #fff !important;
+}
+
+/* Compact result view styling */
+.result-card.compact-mode {
+  max-width: 320px;
+  background: #fafafa;
+  border: 1px solid #e5e7eb;
+  padding: 0.75rem 1rem;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.result-card.compact-mode mat-card-title {
+  font-size: 1rem;
+  margin-bottom: 0.25rem;
+}
+
+.result-card.compact-mode .metric-row {
+  font-size: 0.85rem;
+  justify-content: space-between;
+}

@@ -13,6 +13,7 @@ import { ModelCard } from '../../shared/model-card/model-card';
 import { SummaryCard } from '../../shared/summary-card/summary-card';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Clipboard, ClipboardModule } from '@angular/cdk/clipboard';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
 
 
 @Component({
@@ -31,7 +32,8 @@ import { Clipboard, ClipboardModule } from '@angular/cdk/clipboard';
     MatIconModule,
     ModelCard,
     SummaryCard,
-    ClipboardModule
+    ClipboardModule,
+    MatButtonToggleModule
   ]
 })
 export class Compare {
@@ -43,7 +45,7 @@ export class Compare {
   loadingStep = 0;
   private stepInterval: any;
   showInfo = false;
-
+  viewMode: 'full' | 'compact' = 'full';
 
   constructor(private compareService: CompareService, private clipboard: Clipboard,
     private snackBar: MatSnackBar) { }
