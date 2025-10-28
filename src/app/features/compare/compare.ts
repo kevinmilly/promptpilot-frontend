@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { CompareService } from '../../core/compare-service';
 import { ModelResult } from '../../models/results-models';
 import { CommonModule } from '@angular/common';
@@ -11,9 +11,10 @@ import { MatInputModule } from '@angular/material/input';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { ModelCard } from '../../shared/model-card/model-card';
 import { SummaryCard } from '../../shared/summary-card/summary-card';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { Clipboard, ClipboardModule } from '@angular/cdk/clipboard';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MAT_DIALOG_DATA, MatDialog, MatDialogModule } from '@angular/material/dialog';
 
 
 @Component({
@@ -33,7 +34,9 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
     ModelCard,
     SummaryCard,
     ClipboardModule,
-    MatButtonToggleModule
+    MatButtonToggleModule,
+    MatDialogModule,
+    MatSnackBarModule
   ]
 })
 export class Compare {
@@ -48,7 +51,7 @@ export class Compare {
   viewMode: 'full' | 'compact' = 'full';
 
   constructor(private compareService: CompareService, private clipboard: Clipboard,
-    private snackBar: MatSnackBar) { }
+    private snackBar: MatSnackBar, private dialog: MatDialog) { }
 
   ngOnInit() {
     this.loadSavedComparisons();
@@ -143,7 +146,33 @@ export class Compare {
 
   // Clear all
   clearAllComparisons() {
-    localStorage.removeItem('comparisons');
-    this.savedComparisons = [];
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      data: { message: 'Clear all saved comparisons?' },
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        localStorage.removeItem('comparisons');
+        this.savedComparisons = [];
+        this.snackBar.open('🗑️ All comparisons cleared.', '', { duration: 2000 });
+      }
+    });
   }
+}
+
+@Component({
+  selector: 'app-confirm-dialog',
+  standalone: true,
+  imports: [MatDialogModule, MatButtonModule],
+  template: `
+    <h2 mat-dialog-title>Confirm</h2>
+    <mat-dialog-content>{{ data.message }}</mat-dialog-content>
+    <mat-dialog-actions align="end">
+      <button mat-button mat-dialog-close="false">Cancel</button>
+      <button mat-flat-button color="warn" mat-dialog-close="true">Confirm</button>
+    </mat-dialog-actions>
+  `,
+})
+export class ConfirmDialogComponent {
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any) { }
 }

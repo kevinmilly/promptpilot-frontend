@@ -2,7 +2,7 @@
 <mat-card class="input-card glass-card">
   <mat-form-field appearance="outline" class="full-width">
     <mat-label>Enter your prompt</mat-label>
-    <textarea matInput [(ngModel)]="prompt" rows="3"
+    <textarea matInput [(ngModel)]="prompt" rows="3" cols="10"
       placeholder="Ask something like 'Explain quantum computing simply'"></textarea>
   </mat-form-field>
 
@@ -46,7 +46,11 @@
 </div>
 
 <!-- Summary Card -->
-<app-summary-card *ngIf="results?.length" [results]="results"></app-summary-card>
+<app-summary-card 
+*ngIf="results?.length" 
+[results]="results"
+class="fade-in"
+></app-summary-card>
 
 <!-- Explain Metrics Section -->
 <div *ngIf="results?.length" class="metrics-explainer-container">
@@ -58,13 +62,26 @@
     </button>
   </div>
 
+
   <div *ngIf="showInfo" class="metrics-info glass-panel">
-    <p><b>⚡ Latency:</b> How long the model took to respond (in milliseconds). Lower is faster.</p>
-    <p><b>💬 Tokens:</b> The approximate number of tokens used. More tokens = longer or more complex responses.</p>
-    <p><b>💰 Cost:</b> The estimated price for generating the response, based on tokens and each model’s rate.</p>
-    <p><b>🧠 Readability:</b> Measures how easy the text is to read — higher scores mean simpler, clearer writing.</p>
-    <p><b>🎭 Tone:</b> The overall emotional or stylistic tone detected (e.g., neutral, positive, formal).</p>
-    <p><b>🔗 Coherence:</b> How logically connected and consistent the response is compared to other models.</p>
+    <p matTooltip="How long each model took to respond (lower is faster)">
+      ⚡ <b>Latency:</b> Response time in milliseconds
+    </p>
+    <p matTooltip="Approximate token count used to generate each response">
+      💬 <b>Tokens:</b> Token usage estimate
+    </p>
+    <p matTooltip="Based on token rates for each model">
+      💰 <b>Cost:</b> Estimated price for response generation
+    </p>
+    <p matTooltip="How easy the response is to read and understand">
+      🧠 <b>Readability:</b> Simplicity and clarity of writing
+    </p>
+    <p matTooltip="Detected emotional tone (formal, neutral, playful, etc.)">
+      🎭 <b>Tone:</b> Style and personality of the text
+    </p>
+    <p matTooltip="How logically consistent the response is compared to others">
+      🔗 <b>Coherence:</b> Logical flow and alignment across responses
+    </p>
   </div>
 </div>
 
@@ -76,28 +93,36 @@
   </mat-button-toggle-group>
 </div>
 
-<!-- Results Grid -->
-<section class="results-grid" *ngIf="results?.length">
-  <app-model-card *ngFor="let result of results" [result]="result" [viewMode]="viewMode"
-    class="result-card"></app-model-card>
+<!-- ================================
+     RESULTS GRID
+================================ -->
+<section class="results-grid fade-in" *ngIf="results?.length">
+  <app-model-card
+    *ngFor="let result of results"
+    [result]="result"
+    [viewMode]="viewMode"
+    class="result-card"
+  ></app-model-card>
 </section>
 
 
-<!-- 🔥 Animated console + skeleton loader -->
-<section *ngIf="loading" class="loading-section">
+<!-- ================================
+     LOADING PLACEHOLDER
+================================ -->
+<section *ngIf="loading" class="loading-section fade-in">
   <div class="loading-console">
     <pre>
-      <ng-container *ngIf="loadingStep >= 1">⏳ Connecting to models...</ng-container>
-      <ng-container *ngIf="loadingStep >= 2">⚙️ Querying Gemini...</ng-container>
-      <ng-container *ngIf="loadingStep >= 3">⚙️ Querying Chat GPT...</ng-container>
-      <ng-container *ngIf="loadingStep >= 4">⚙️ Querying Claude...</ng-container>
-      <ng-container *ngIf="loadingStep >= 5">💡 Collecting insights...</ng-container>
-      <ng-container *ngIf="loadingStep >= 6">✅ Preparing comparison results...</ng-container>
+<ng-container *ngIf="loadingStep >= 1">⏳ Connecting to models...</ng-container>
+<ng-container *ngIf="loadingStep >= 2">⚙️ Querying Gemini...</ng-container>
+<ng-container *ngIf="loadingStep >= 3">⚙️ Querying ChatGPT...</ng-container>
+<ng-container *ngIf="loadingStep >= 4">⚙️ Querying Claude...</ng-container>
+<ng-container *ngIf="loadingStep >= 5">💡 Collecting insights...</ng-container>
+<ng-container *ngIf="loadingStep >= 6">✅ Preparing comparison results...</ng-container>
     </pre>
   </div>
 
   <div class="skeleton-grid">
-    <div class="skeleton-card" *ngFor="let i of [1,2,3]">
+    <div class="skeleton-card" *ngFor="let i of [1, 2, 3]">
       <div class="skeleton-header"></div>
       <div class="skeleton-line short"></div>
       <div class="skeleton-line"></div>
