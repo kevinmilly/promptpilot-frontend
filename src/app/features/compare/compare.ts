@@ -151,7 +151,7 @@ export class Compare {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      if (result) {
+      if (result == true) {
         localStorage.removeItem('comparisons');
         this.savedComparisons = [];
         this.snackBar.open('🗑️ All comparisons cleared.', '', { duration: 2000 });
